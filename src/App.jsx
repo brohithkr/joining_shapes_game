@@ -1,34 +1,42 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Square, Circle, Triangle } from "./components/shapes";
+import { ArcherContainer } from "react-archer";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  let grid = [];
-  for (let i = 0; i < 12; i++) {
-    grid.push(
-      <div className="flex flex-col">
-        <div className="flex flex-row justify-between">
-          <Square />
-          <div className="size-10"></div>
-          <Triangle />
+  var [selectedArr, setSelectedArr] = useState([]);
+  let grid;
+  useMemo(() => {
+    grid = [];
+    for (let i = 1; i < 13; i++) {
+      grid.push(
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between">
+            <Square id={`s${i}`} arr={selectedArr} setArr={setSelectedArr} />
+            <div className="size-10"></div>
+            <Triangle onClick={() => {
+              selectedArr.push(`t${i}`)
+              setSelectedArr()
+            }} />
+          </div>
+          <div className="flex justify-center">
+            <Circle onClick={() => {
+              selectedArr.push(`c${i}`)
+              setSelectedArr()
+            }} />
+          </div>
         </div>
-        <div className="flex justify-center">
-          <Circle />
-        </div>
-      </div>
-    );
-  }
+      );
+    }
+  });
 
   return (
     <div className="flex flex-col">
-      {/* <svg className="z-10  ">
-        <line x1={0} y1={0} x2={100} y2={300} stroke="black"></line>
-      </svg> */}
-      <div className="flex flex-col">
+      <ArcherContainer><div ref={parent} className="flex flex-col">
         {grid}
-      </div>
+      </div></ArcherContainer>
     </div>
   );
 }
