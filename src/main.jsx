@@ -6,6 +6,7 @@ import './test.jsx'
 import SecondExample from './test.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SecondExample />
+    {/* <SecondExample /> */}
+    <App />
   </React.StrictMode>,
 )

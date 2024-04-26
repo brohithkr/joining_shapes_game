@@ -3,57 +3,59 @@ import { useState } from "react";
 import { ArcherElement } from "react-archer";
 
 const baseRelation = {
-  targetAnchor: "bottom",
-  sourceAnchor: "top",
-  style: { strokeColor: "blue", strokeWidth: 2 },
+  targetAnchor: 'middle',
+  sourceAnchor: 'middle',
+  style: { strokeColor: "#3b82f6", strokeWidth: 5, endMarker: false  },
 };
-const Square = ({ id, arr, setArr }) => {
+const Square = ({ id, arr, setArr, reset }) => {
   const [isClicked, setIsClicked] = useState(false);
   let [relations, setRelations] = useState([]);
+  if(reset) {
+    relations = []
+    reset = false
+    setIsClicked(false);
+  }
   const handleClick = () => {
     let selected = !isClicked;
     if (selected) {
       setIsClicked(selected);
-      let relation = { ...baseRelation, targetId: arr[arr.length - 1] };
-      relations.push(relation);
-      console.log(relations);
-      setRelations(relations);
+      if (arr.length > 0) {
+        let relation = { ...baseRelation, targetId: arr[arr.length - 1] };
+        setRelations([...relations, relation]);
+      }
       arr.push(id);
       setArr(arr);
-      console.log()
     } else {
       if (arr[arr.length - 1] == id) {
         setIsClicked(selected);
+        setRelations([])
         arr.pop();
       }
     }
 
-    // setRelations()
-    console.log(arr);
   };
   return (
-    <div className="p-2">
-      <div
-        onClick={handleClick}
-        className={`w-10 h-10 flex items-center justify-center  ${
-          isClicked ? "bg-blue-500" : "bg-slate-300"
-        }
+    <ArcherElement id={id} relations={relations}>
+      <div className="p-2">
+        <div
+          onClick={handleClick}
+          className={`w-10 h-10 flex items-center justify-center  ${
+            isClicked ? "bg-blue-500" : "bg-slate-300"
+          }
           ${isClicked ? "" : "hover:bg-slate-400"}`}
-      >
-        <ArcherElement id={id} relations={relations}>
+        >
           <div className="-z-10 size-2"></div>
-        </ArcherElement>
+        </div>
       </div>
-    </div>
+    </ArcherElement>
   );
 };
 
-const Circle = (id, onClick) => {
+const Circle = (id) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-    onClick();
   };
   return (
     <div className="">

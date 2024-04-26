@@ -1,81 +1,52 @@
-import React from 'react';
-import ArcherContainer from '../src/ArcherContainer/ArcherContainer';
-import ArcherElement from '../src/ArcherElement/ArcherElement';
+import React, { useState } from "react";
+import { ArcherContainer, ArcherElement } from "react-archer";
 const rootStyle = {
-  display: 'flex',
-  justifyContent: 'center',
+  display: "flex",
+  justifyContent: "center",
 };
 const rowStyle = {
-  margin: '200px 0',
-  display: 'flex',
-  justifyContent: 'space-between',
+  margin: "200px 0",
+  display: "flex",
+  justifyContent: "space-between",
 };
 const boxStyle = {
-  padding: '10px',
-  border: '1px solid black',
+  padding: "10px",
+  border: "1px solid black",
 };
-
 const SecondExample = () => {
-  const [nbElements, setNbElements] = React.useState(3);
-  const [labels, setLabels] = React.useState('hello');
-  return (
-    <div
-      style={{
-        height: '500px',
-        margin: '50px',
-      }}
-    >
-      <div>
-        <div>Change labels</div>
-        <input
-          data-cy="change-labels-input"
-          type="text"
-          onChange={(event) => {
-            setLabels(event.currentTarget.value);
-          }}
-        />
-      </div>
-      <div>
-        <div>Add elements</div>
-        <button data-cy="add-element" onClick={() => setNbElements(nbElements + 1)}>
-          +
-        </button>
-        <button onClick={() => setNbElements(nbElements > 1 ? nbElements - 1 : 0)}>-</button>
-      </div>
-      <ArcherContainer strokeColor="red">
-        <div style={rootStyle}>
-          <ArcherElement id="root with spaces et accents héhéhéhé">
-            <div style={boxStyle}>Root</div>
+    let [conn, setConn] = useState(null);
+    const handleConn = () => {
+        if(conn!="2"){
+        setConn("2")}
+        else{
+            setConn("0")
+        }
+        console.log("Hello")
+        console.log(conn)
+    }
+    return (
+      <ArcherContainer >
+        <div style={rowStyle}>
+          <ArcherElement
+            id="1"
+            relations={[
+              {
+                targetAnchor: 'middle',
+                sourceAnchor: 'middle',
+                targetId: conn,
+                style: { strokeColor: "blue", strokeWidth: 5, endMarker: false  },
+              },
+            ]}
+          > 
+            <div onClick={handleConn} style={boxStyle}>Element 1</div>
+          </ArcherElement>
+          <div className="w-10"></div>
+          <ArcherElement id="2">
+            <div style={boxStyle}>Element 2</div>
           </ArcherElement>
         </div>
-
-        <div style={rowStyle}>
-          {Array(nbElements)
-            .fill(0)
-            .map((_, i) => (
-              <ArcherElement
-                key={`element${i}`}
-                id={`element${i}`}
-                relations={[
-                  {
-                    targetId: 'root with spaces et accents héhéhéhé',
-                    targetAnchor: 'bottom',
-                    sourceAnchor: 'top',
-                    label: (
-                      <div>
-                        {i} {labels}
-                      </div>
-                    ),
-                  },
-                ]}
-              >
-                <div style={boxStyle}>Element {i}</div>
-              </ArcherElement>
-            ))}
-        </div>
       </ArcherContainer>
-    </div>
-  );
-};
+    );
+  };
 
 export default SecondExample;
