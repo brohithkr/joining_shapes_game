@@ -7,20 +7,17 @@ import "./App.css";
 
 function App() {
   var [selectedArr, setSelectedArr] = useState([]);
-  let [reset, setReset] = useState(false);
-  let grid;
-  let handleReset = () => {
-    setReset(true)
-    // setSelectedArr([])
-
+  const reset = () => {
+    window.location.reload()
   }
+  let grid;
   useMemo(() => {
     grid = [];
     for (let i = 1; i < 13; i++) {
       grid.push(
         <div className="flex flex-col">
           <div className="flex flex-row justify-between">
-            <Square id={`s${i}`} arr={selectedArr} setArr={setSelectedArr} reset={reset} />
+            <Square id={`s${i}`} arr={selectedArr} setArr={setSelectedArr}  />
             <div className="size-10"></div>
             <Triangle
               onClick={() => {
@@ -51,7 +48,7 @@ function App() {
           </div>
         </ArcherContainer>
       </div>
-      <button onClick={handleReset} className="w-auto h-9">Reset</button>
+      <button onClick={reset} className="w-auto h-9">Reset</button>
     </div>
   );
 }

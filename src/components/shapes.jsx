@@ -7,14 +7,9 @@ const baseRelation = {
   sourceAnchor: 'middle',
   style: { strokeColor: "#3b82f6", strokeWidth: 5, endMarker: false  },
 };
-const Square = ({ id, arr, setArr, reset }) => {
+const Square = ({ id, arr, setArr }) => {
   const [isClicked, setIsClicked] = useState(false);
   let [relations, setRelations] = useState([]);
-  if(reset) {
-    relations = []
-    reset = false
-    setIsClicked(false);
-  }
   const handleClick = () => {
     let selected = !isClicked;
     if (selected) {
