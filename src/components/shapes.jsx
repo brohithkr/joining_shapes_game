@@ -15,7 +15,7 @@ function handleShapeClick(
   arr,
   setArr,
   relations,
-  setRelations
+  setRelations,
 ) {
   let selected = !isClicked;
   if (selected) {
@@ -66,9 +66,7 @@ function Square({ id, isSelected, relations, onClick, color }) {
   );
 }
 
-
-const Circle = ({id, isSelected, relations, onClick, color }) => {
-
+const Circle = ({ id, isSelected, relations, onClick, color }) => {
   const handleClick = () => {
     onClick(id);
   };
@@ -86,7 +84,7 @@ const Circle = ({id, isSelected, relations, onClick, color }) => {
   );
 };
 
-const Triangle = ({ id, isSelected, relations, onClick, color  }) => {
+const Triangle = ({ id, isSelected, relations, onClick, color }) => {
   // let height = (Math.sqrt(3) / 2) * 42;
   // let h = height.toString().substring(0, 4);
 

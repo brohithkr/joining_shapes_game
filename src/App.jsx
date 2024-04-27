@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Square, Circle, Triangle, Square2 } from "./components/shapes";
+import { Square, Circle, Triangle } from "./components/shapes";
 import { ArcherContainer } from "react-archer";
 import "./App.css";
 
@@ -12,7 +12,7 @@ const baseRelation = {
 function App() {
   var [selectedArr, setSelectedArr] = useState([]);
   var [gridRelations, setGridRelations] = useState(new Map());
-  let [selectedSet, _] = useState(new Set([]));
+  let [selectedSet, setSelectedSet] = useState(new Set([]));
   let handleShapeClick = (id) => {
     var currentRelation = gridRelations.get(id);
     if (!selectedArr.includes(id)) {
@@ -34,11 +34,9 @@ function App() {
       if (selectedArr[selectedArr.length - 1] === id) {
         selectedSet.delete(id);
         const newSelectedArr = selectedArr.slice(0, selectedArr.length);
-        newSelectedArr.pop()
+        newSelectedArr.pop();
         gridRelations.delete(id);
-        // setGridRelations(gridRelations);
-        // console.log(selectedArr);
-        // setGridRelations(gridRelations);
+
         setSelectedArr(newSelectedArr);
         return;
       }
@@ -46,16 +44,20 @@ function App() {
   };
 
   const reset = () => {
-    window.location.reload();
+    setSelectedSet(new Set());
+    setGridRelations(new Map());
+    setSelectedArr([]);
   };
 
   let grid;
   // useMemo(() => {
   grid = [];
   for (let i = 1; i < 13; i++) {
-    let squareId = `ss${i}`;
+    let squareId = `s${i}`;
+    let circleId = `c${i}`;
+    let triangleId = `t${i}`;
     grid.push(
-      <div className="flex flex-col">
+      <div key={i} className="flex flex-col">
         <div className="flex flex-row justify-between">
           <Square
             id={squareId}
@@ -65,12 +67,24 @@ function App() {
             relations={gridRelations.get(squareId)}
           />
           <div className="size-10"></div>
-          <Triangle id={`t${i}`} arr={selectedArr} setArr={setSelectedArr} />
+          <Triangle
+            id={triangleId}
+            isSelected={selectedSet.has(triangleId)}
+            onClick={handleShapeClick}
+            color="#3b82f6"
+            relations={gridRelations.get(triangleId)}
+          />
         </div>
         <div className="flex justify-center">
-          <Circle id={`c${i}`} arr={selectedArr} setArr={setSelectedArr} />
+          <Circle
+            id={circleId}
+            isSelected={selectedSet.has(circleId)}
+            onClick={handleShapeClick}
+            color="#3b82f6"
+            relations={gridRelations.get(circleId)}
+          />
         </div>
-      </div>
+      </div>,
     );
   }
   // });

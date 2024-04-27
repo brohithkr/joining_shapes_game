@@ -14,39 +14,41 @@ const boxStyle = {
   border: "1px solid black",
 };
 const SecondExample = () => {
-    let [conn, setConn] = useState(null);
-    const handleConn = () => {
-        if(conn!="2"){
-        setConn("2")}
-        else{
-            setConn("0")
-        }
-        console.log("Hello")
-        console.log(conn)
+  let [conn, setConn] = useState(null);
+  const handleConn = () => {
+    if (conn != "2") {
+      setConn("2");
+    } else {
+      setConn("0");
     }
-    return (
-      <ArcherContainer >
-        <div style={rowStyle}>
-          <ArcherElement
-            id="1"
-            relations={[
-              {
-                targetAnchor: 'middle',
-                sourceAnchor: 'middle',
-                targetId: conn,
-                style: { strokeColor: "blue", strokeWidth: 5, endMarker: false  },
-              },
-            ]}
-          > 
-            <div onClick={handleConn} style={boxStyle}>Element 1</div>
-          </ArcherElement>
-          <div className="w-10"></div>
-          <ArcherElement id="2">
-            <div style={boxStyle}>Element 2</div>
-          </ArcherElement>
-        </div>
-      </ArcherContainer>
-    );
+    console.log("Hello");
+    console.log(conn);
   };
+  return (
+    <ArcherContainer>
+      <div style={rowStyle}>
+        <ArcherElement
+          id="1"
+          relations={[
+            {
+              targetAnchor: "middle",
+              sourceAnchor: "middle",
+              targetId: conn,
+              style: { strokeColor: "blue", strokeWidth: 5, endMarker: false },
+            },
+          ]}
+        >
+          <div onClick={handleConn} style={boxStyle}>
+            Element 1
+          </div>
+        </ArcherElement>
+        <div className="w-10"></div>
+        <ArcherElement id="2">
+          <div style={boxStyle}>Element 2</div>
+        </ArcherElement>
+      </div>
+    </ArcherContainer>
+  );
+};
 
 export default SecondExample;
