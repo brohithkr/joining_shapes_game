@@ -55,7 +55,7 @@ function Square({ id, isSelected, relations, onClick, color }) {
         <div
           onClick={handleClick}
           className={`w-10 h-10 flex items-center justify-center  ${
-            isSelected ? `bg-blue-500` : "bg-slate-300"
+            isSelected ? `bg-[${color}]` : "bg-slate-300"
           }
           ${isSelected ? "" : "hover:bg-slate-400"}`}
         >
@@ -77,7 +77,7 @@ const Circle = ({ id, isSelected, relations, onClick, color }) => {
           onClick={handleClick}
           className={`p-3 w-10 items-center justify-center h-10 rounded-full  ${
             isSelected ? "" : "hover:bg-slate-400"
-          } ${isSelected ? "bg-blue-500" : "bg-slate-300"}`}
+          } ${isSelected ? `bg-[#3b82f6]` : "bg-slate-300"}`}
         ></div>
       </div>
     </ArcherElement>
@@ -85,8 +85,8 @@ const Circle = ({ id, isSelected, relations, onClick, color }) => {
 };
 
 const Triangle = ({ id, isSelected, relations, onClick, color }) => {
-  // let height = (Math.sqrt(3) / 2) * 42;
-  // let h = height.toString().substring(0, 4);
+  const [hover, setHover] = useState(false);
+  const finalColor = isSelected ? color : (hover ? '#94a3b8' : '#cbd5e1');
 
   const handleClick = () => {
     onClick(id);
@@ -97,16 +97,16 @@ const Triangle = ({ id, isSelected, relations, onClick, color }) => {
       <ArcherElement id={id} relations={relations}>
         <div
           onClick={handleClick}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
           className={`size-0
         border-l-[21px] border-l-transparent
         border-r-[21px] border-r-transparent
-        border-b-[34.6px] ${
-          isSelected ? "border-b-blue-500" : "border-b-slate-300"
-        }
-        ${isSelected ? "" : "hover:border-b-slate-400"}
+        border-b-[34.6px]
         `}
+        style={{ borderBottomColor: finalColor }}
         >
-          <div className="-z-10 size-2 relative left-[0.3px] top-4  "></div>
+          <div className="-z-10 size-2 relative left-[0.3px] top-4"></div>
         </div>
       </ArcherElement>
     </div>
