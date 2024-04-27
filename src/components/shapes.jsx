@@ -94,9 +94,10 @@ const Triangle = ({ id, isSelected, relations, onClick, color }) => {
 
   return (
     <div className="p-2 items-center justify-center">
-      <div
-        onClick={handleClick}
-        className={`size-0
+      <ArcherElement id={id} relations={relations}>
+        <div
+          onClick={handleClick}
+          className={`size-0
         border-l-[21px] border-l-transparent
         border-r-[21px] border-r-transparent
         border-b-[34.6px] ${
@@ -104,11 +105,10 @@ const Triangle = ({ id, isSelected, relations, onClick, color }) => {
         }
         ${isSelected ? "" : "hover:border-b-slate-400"}
         `}
-      >
-        <ArcherElement id={id} relations={relations}>
+        >
           <div className="-z-10 size-2 relative left-[0.3px] top-4  "></div>
-        </ArcherElement>
-      </div>
+        </div>
+      </ArcherElement>
     </div>
   );
 };
