@@ -20,18 +20,12 @@ function App() {
             <Square id={`s${i}`} arr={selectedArr} setArr={setSelectedArr}  />
             <div className="size-10"></div>
             <Triangle
-              onClick={() => {
-                selectedArr.push(`t${i}`);
-                setSelectedArr();
-              }}
+              id={`t${i}`} arr={selectedArr} setArr={setSelectedArr}
             />
           </div>
           <div className="flex justify-center">
             <Circle
-              onClick={() => {
-                selectedArr.push(`c${i}`);
-                setSelectedArr();
-              }}
+              id={`c${i}`} arr={selectedArr} setArr={setSelectedArr}
             />
           </div>
         </div>
