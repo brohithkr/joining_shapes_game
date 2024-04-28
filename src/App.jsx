@@ -1,10 +1,14 @@
-import Grid from "./Grid";
+import Grid from "./components/Grid";
+import Code from "./components/Code";
 import { useState } from "react";
+import codes from "./codes.json";
+import "./App.css";
 
 export default function App() {
   var [selectedArr, setSelectedArr] = useState([]);
   var [gridRelations, setGridRelations] = useState(new Map());
   let [selectedSet, setSelectedSet] = useState(new Set([]));
+  let [colorGrid, setColorGrid] = useState(new Map());
   let handleShapeClick = (id) => {
     var currentRelation = gridRelations.get(id);
     if (!selectedArr.includes(id)) {
@@ -42,14 +46,19 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col">
-      <Grid
-        orientation="horizontal"
-        selectedSet={selectedSet}
-        gridRelations={gridRelations}
-        handleShapeClick={handleShapeClick}
-      />
-      <button onClick={reset}> reset </button>
+    <div className="">
+      {/* {console.log(codes["code1"])} */}
+      <Code codeArr={codes["code1"]} colorArr={[]} />
+      <div className="flex flex-col">
+        <Grid
+          orientation="horizontal"
+          selectedSet={selectedSet}
+          gridRelations={gridRelations}
+          handleShapeClick={handleShapeClick}
+          colorGrid={colorGrid}
+        />
+        <button onClick={reset}> reset </button>
+      </div>
     </div>
   );
 }

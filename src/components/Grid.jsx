@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
-import { Square, Circle, Triangle } from "./components/shapes";
+import { Square, Circle, Triangle } from "./shapes";
 import { ArcherContainer } from "react-archer";
-import "./App.css";
 
 /**
  * @typedef {'vertical' | 'horizontal'} Orientation
@@ -15,9 +14,10 @@ import "./App.css";
  * @param {Set<string>} props.selectedSet
  * @param {Map<string, Object[]>} props.gridRelations
  * @param {(id: string) => void} props.handleShapeClick
+ * @param {Map<string, string>} props.colorGrid
  * @returns {*}
  */
-function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShapeClick }) {
+function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShapeClick, colorGrid }) {
   
 
   let grid;
@@ -29,7 +29,7 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
     grid.push(
       <div
         key={i}
-        className={`flex flex-${orientation == "vertical" ? "col" : "row"}}`}
+        className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}
       >
         <div
           className={`flex flex-${
@@ -40,7 +40,7 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={squareId}
             isSelected={selectedSet.has(squareId)}
             onClick={handleShapeClick}
-            color="#3b82f6"
+            color={colorGrid.get(squareId) ? colorGrid.get(squareId) : "#3b82f6"}
             relations={gridRelations.get(squareId)}
           />
           <div className="size-10"></div>
@@ -48,7 +48,7 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={triangleId}
             isSelected={selectedSet.has(triangleId)}
             onClick={handleShapeClick}
-            color="#3b82f6"
+            color={colorGrid.get(triangleId) ? colorGrid.get(triangleId) : "#3b82f6"}
             relations={gridRelations.get(triangleId)}
           />
         </div>
@@ -57,7 +57,7 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={circleId}
             isSelected={selectedSet.has(circleId)}
             onClick={handleShapeClick}
-            color="#3b82f6"
+            color={colorGrid.get(circleId) ? colorGrid.get(circleId) : "#3b82f6"}
             relations={gridRelations.get(circleId)}
           />
         </div>
@@ -70,7 +70,7 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
         <ArcherContainer>
           <div
             ref={parent}
-            className={`flex flex-${orientation == "vertical" ? "col" : "row"}}`}
+            className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}
           >
             {grid}
           </div>
