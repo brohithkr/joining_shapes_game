@@ -62,7 +62,7 @@ export default function App() {
         setOrientation("horizontal");
       }
     };
-
+    handleResize()
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -71,9 +71,9 @@ export default function App() {
   }, []);
   return (
     <div className="">
-      <div className="absolute top-1/4 left-5 ">
+      <div className="absolute top-1/4 left-3 ">
         <Code codeArr={codes["code1"]} colorArr={textColorArr} />
-        <button onClick={reset}> reset </button>
+        <button onClick={reset}> reset  </button>
       </div>
       <div className="flex flex-col">
         <Grid
