@@ -47,9 +47,9 @@ export default function compare_n_color(
   correctCode,
   inputArr,
   setTextColorArr,
-  setColorGrid
+  setColorGrid,
 ) {
-  console.log(inputArr)
+  console.log(inputArr);
   let inputCode = input_arr_to_code(inputArr, correctCode.length);
   let textColorArr = [];
   /**

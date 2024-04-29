@@ -3,7 +3,7 @@ const colors = {
   red: "#e64747",
   green: "#3bf673",
   lightGrey: "#cbd5e1",
-  darkGrey: "#94a3b8"
+  darkGrey: "#94a3b8",
 };
 
 export default colors;

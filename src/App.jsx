@@ -1,6 +1,6 @@
 import Grid from "./components/Grid";
 import Code from "./components/Code";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import codes from "./codes.json";
 import colors from "./utlis/colors";
 import compare_n_color from "./utlis/compare_n_color";
@@ -12,7 +12,7 @@ export default function App() {
   let [selectedSet, setSelectedSet] = useState(new Set([]));
   let [textColorArr, setTextColorArr] = useState([]);
   let [colorGrid, setColorGrid] = useState(new Map());
-  let [orientation, setOrientation] = useState("horizontal")
+  let [orientation, setOrientation] = useState("horizontal");
   let handleShapeClick = (id) => {
     var currentRelation = gridRelations.get(id);
     var newSelectedArr = selectedArr.slice();
@@ -57,10 +57,9 @@ export default function App() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1386) {
-        setOrientation("vertical")
-      }
-      else {
-        setOrientation("horizontal")
+        setOrientation("vertical");
+      } else {
+        setOrientation("horizontal");
       }
     };
 

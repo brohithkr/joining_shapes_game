@@ -17,9 +17,14 @@ import { ArcherContainer } from "react-archer";
  * @param {Map<string, string>} props.colorGrid
  * @returns {*}
  */
-function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShapeClick, colorGrid }) {
-  
-
+function Grid({
+  orientation,
+  selectedArr,
+  selectedSet,
+  gridRelations,
+  handleShapeClick,
+  colorGrid,
+}) {
   let grid;
   grid = [];
   for (let i = 1; i < 13; i++) {
@@ -40,7 +45,9 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={squareId}
             isSelected={selectedSet.has(squareId)}
             onClick={handleShapeClick}
-            color={colorGrid.get(squareId) ? colorGrid.get(squareId) : "#3b82f6"}
+            color={
+              colorGrid.get(squareId) ? colorGrid.get(squareId) : "#3b82f6"
+            }
             relations={gridRelations.get(squareId)}
           />
           <div className="size-10"></div>
@@ -48,7 +55,9 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={triangleId}
             isSelected={selectedSet.has(triangleId)}
             onClick={handleShapeClick}
-            color={colorGrid.get(triangleId) ? colorGrid.get(triangleId) : "#3b82f6"}
+            color={
+              colorGrid.get(triangleId) ? colorGrid.get(triangleId) : "#3b82f6"
+            }
             relations={gridRelations.get(triangleId)}
           />
         </div>
@@ -57,26 +66,27 @@ function Grid({ orientation, selectedArr, selectedSet, gridRelations, handleShap
             id={circleId}
             isSelected={selectedSet.has(circleId)}
             onClick={handleShapeClick}
-            color={colorGrid.get(circleId) ? colorGrid.get(circleId) : "#3b82f6"}
+            color={
+              colorGrid.get(circleId) ? colorGrid.get(circleId) : "#3b82f6"
+            }
             relations={gridRelations.get(circleId)}
           />
         </div>
-      </div>
+      </div>,
     );
   }
 
   return (
-      <div className="flex flex-col">
-        <ArcherContainer>
-          <div
-            ref={parent}
-            className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}
-          >
-            {grid}
-          </div>
-        </ArcherContainer>
-      </div>
-      
+    <div className="flex flex-col">
+      <ArcherContainer>
+        <div
+          ref={parent}
+          className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}
+        >
+          {grid}
+        </div>
+      </ArcherContainer>
+    </div>
   );
 }
 

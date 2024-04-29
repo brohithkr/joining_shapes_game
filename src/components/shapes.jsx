@@ -16,7 +16,7 @@ function handleShapeClick(
   arr,
   setArr,
   relations,
-  setRelations
+  setRelations,
 ) {
   let selected = !isClicked;
   if (selected) {
