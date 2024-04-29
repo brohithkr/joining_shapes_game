@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { ArcherElement } from "react-archer";
+import colors from "../utlis/colors";
 
 const baseRelation = {
   targetAnchor: "middle",
@@ -15,7 +16,7 @@ function handleShapeClick(
   arr,
   setArr,
   relations,
-  setRelations,
+  setRelations
 ) {
   let selected = !isClicked;
   if (selected) {
@@ -48,15 +49,18 @@ function Square({ id, isSelected, relations, onClick, color }) {
   const handleClick = () => {
     onClick(id);
   };
-
+  if (relations) {
+    for (let i of relations) {
+      i.style.strokeColor = color;
+    }
+  }
   return (
     <ArcherElement id={id} relations={relations}>
       <div className="p-2">
         <div
           onClick={handleClick}
-          className={`w-10 h-10 flex items-center justify-center  ${
-            isSelected ? `bg-[${color}]` : "bg-slate-300"
-          }
+          style={{ backgroundColor: isSelected ? color : colors.lightGrey }}
+          className={`w-10 h-10 flex items-center justify-center  
           ${isSelected ? "" : "hover:bg-slate-400"}`}
         >
           <div className="-z-10 size-2"></div>
@@ -70,14 +74,20 @@ const Circle = ({ id, isSelected, relations, onClick, color }) => {
   const handleClick = () => {
     onClick(id);
   };
+  if (relations) {
+    for (let i of relations) {
+      i.style.strokeColor = color;
+    }
+  }
   return (
     <ArcherElement id={id} relations={relations}>
       <div className="">
         <div
           onClick={handleClick}
+          style={{ backgroundColor: isSelected ? color : colors.lightGrey }}
           className={`p-3 w-10 items-center justify-center h-10 rounded-full  ${
             isSelected ? "" : "hover:bg-slate-400"
-          } ${isSelected ? `bg-[#3b82f6]` : "bg-slate-300"}`}
+          }`}
         ></div>
       </div>
     </ArcherElement>
@@ -86,11 +96,16 @@ const Circle = ({ id, isSelected, relations, onClick, color }) => {
 
 const Triangle = ({ id, isSelected, relations, onClick, color }) => {
   const [hover, setHover] = useState(false);
-  const finalColor = isSelected ? color : (hover ? '#94a3b8' : '#cbd5e1');
+  const finalColor = isSelected ? color : hover ? "#94a3b8" : "#cbd5e1";
 
   const handleClick = () => {
     onClick(id);
   };
+  if (relations) {
+    for (let i of relations) {
+      i.style.strokeColor = color;
+    }
+  }
 
   return (
     <div className="p-2 items-center justify-center">
@@ -104,7 +119,7 @@ const Triangle = ({ id, isSelected, relations, onClick, color }) => {
         border-r-[21px] border-r-transparent
         border-b-[34.6px]
         `}
-        style={{ borderBottomColor: finalColor }}
+          style={{ borderBottomColor: finalColor }}
         >
           <div className="-z-10 size-2 relative left-[0.3px] top-4"></div>
         </div>

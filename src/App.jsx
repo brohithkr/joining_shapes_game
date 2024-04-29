@@ -2,13 +2,18 @@ import Grid from "./components/Grid";
 import Code from "./components/Code";
 import { useState } from "react";
 import codes from "./codes.json";
+import colors from "./utlis/colors";
+import compare_n_color from "./utlis/compare_n_color";
 import "./App.css";
 
 export default function App() {
   var [selectedArr, setSelectedArr] = useState([]);
   var [gridRelations, setGridRelations] = useState(new Map());
   let [selectedSet, setSelectedSet] = useState(new Set([]));
+  let [textColorArr, setTextColorArr] = useState([]);
   let [colorGrid, setColorGrid] = useState(new Map());
+
+
   let handleShapeClick = (id) => {
     var currentRelation = gridRelations.get(id);
     if (!selectedArr.includes(id)) {
@@ -37,6 +42,8 @@ export default function App() {
         return;
       }
     }
+
+    compare_n_color(codes.code1, selectedArr, setTextColorArr, setColorGrid);
   };
 
   const reset = () => {
@@ -47,8 +54,7 @@ export default function App() {
 
   return (
     <div className="">
-      {/* {console.log(codes["code1"])} */}
-      <Code codeArr={codes["code1"]} colorArr={[]} />
+      <Code codeArr={codes["code1"]} colorArr={textColorArr} />
       <div className="flex flex-col">
         <Grid
           orientation="horizontal"
