@@ -9,7 +9,7 @@ import React from "react";
  */
 export default function Code({codeArr, colorArr}) {
     return (
-        <div className="absolute top-5 left-5">
+        <div className="font-openDyslexic text-2xl">
         {codeArr.map((code, index) => {
             return (
             <p key={index} style={{ color: colorArr[index] }}>

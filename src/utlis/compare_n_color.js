@@ -49,6 +49,7 @@ export default function compare_n_color(
   setTextColorArr,
   setColorGrid
 ) {
+  console.log(inputArr)
   let inputCode = input_arr_to_code(inputArr, correctCode.length);
   let textColorArr = [];
   /**
@@ -67,10 +68,11 @@ export default function compare_n_color(
       }
     }
     textColorArr.push(color);
-    colorGrid.set(inputArr[3 * i], color);
-    colorGrid.set(inputArr[3 * i + 1], color);
-    colorGrid.set(inputArr[3 * i + 2], color);
+    // colorGrid.set(inputArr[3 * i], color);
+    // colorGrid.set(inputArr[3 * i + 1], color);
+    // colorGrid.set(inputArr[3 * i + 2], color);
   }
+  // console.log(textColorArr)
   setTextColorArr(textColorArr);
   setColorGrid(colorGrid);
 }
@@ -90,12 +92,12 @@ let code = [
   "T-S",
 ];
 
-let input = ["t1", "c1", "s2", "c2", "s3", "c3", "s4"];
+let input = ["s1", "c1", "t2"];
 
-console.log(input_arr_to_code(input, 12));
-compare_n_color(
-  code,
-  input,
-  () => {},
-  () => {}
-);
+// console.log(input_arr_to_code(input, 12));
+// compare_n_color(
+//   code,
+//   input,
+//   () => {},
+//   () => {}
+// );
