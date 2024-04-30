@@ -3,12 +3,6 @@ import { useState, ReactNode } from "react";
 import { ArcherElement } from "react-archer";
 import colors from "../utlis/colors";
 
-const baseRelation = {
-  targetAnchor: "middle",
-  sourceAnchor: "middle",
-  style: { strokeColor: "#3b82f6", strokeWidth: 5, endMarker: false },
-};
-
 /**
  * Holds all common properties of Shapes like hover, lines, color etc
  * @param {Object} props

@@ -62,7 +62,7 @@ export default function Game() {
         setOrientation("horizontal");
       }
     };
-    handleResize()
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -73,7 +73,10 @@ export default function Game() {
     <div className="">
       <div className="fixed top-1/4 left-3 ">
         <Code codeArr={codes["code1"]} colorArr={textColorArr} />
-        <button className="mt-4" onClick={reset}> reset  </button>
+        <button className="mt-4" onClick={reset}>
+          {" "}
+          reset{" "}
+        </button>
       </div>
       <div className="flex flex-col">
         <Grid
