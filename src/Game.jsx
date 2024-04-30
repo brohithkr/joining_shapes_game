@@ -6,7 +6,7 @@ import colors from "./utlis/colors";
 import compare_n_color from "./utlis/compare_n_color";
 import "./App.css";
 
-export default function App() {
+export default function Game() {
   var [selectedArr, setSelectedArr] = useState([]);
   var [gridRelations, setGridRelations] = useState(new Map());
   let [selectedSet, setSelectedSet] = useState(new Set([]));
@@ -71,9 +71,9 @@ export default function App() {
   }, []);
   return (
     <div className="">
-      <div className="absolute top-1/4 left-3 ">
+      <div className="fixed top-1/4 left-3 ">
         <Code codeArr={codes["code1"]} colorArr={textColorArr} />
-        <button onClick={reset}> reset  </button>
+        <button className="mt-4" onClick={reset}> reset  </button>
       </div>
       <div className="flex flex-col">
         <Grid
