@@ -1,16 +1,70 @@
 {
-  "code1": [
-    "T-S",
-    "S-T",
-    "T-T",
-    "T-S",
-    "S-S",
-    "S-T",
-    "T-S",
-    "S-S",
-    "S-T",
-    "T-T",
-    "T-T",
-    "T-S"
-  ]
+  "code1": {
+    "code": [
+      "T-S",
+      "S-T",
+      "T-T",
+      "T-S",
+      "S-S",
+      "S-T",
+      "T-S",
+      "S-S",
+      "S-T",
+      "T-T",
+      "T-T",
+      "T-S"
+    ],
+    "nOfShapes": 2
+  },
+  "code2": {
+    "code": [
+      "S-T",
+      "T-T",
+      "T-S",
+      "S-S",
+      "S-S",
+      "S-T",
+      "T-T",
+      "T-S",
+      "S-T",
+      "T-S",
+      "S-S",
+      "S-T"
+    ],
+    "nOfShapes": 2
+  },
+  "code3": {
+    "code": [
+      "T-S",
+      "S-S",
+      "S-T",
+      "T-S",
+      "S-H",
+      "H-H",
+      "H-S",
+      "S-H",
+      "H-H",
+      "H-S",
+      "S-S",
+      "S-H"
+    ],
+    "nOfShapes": 3
+  },
+  "code4": {
+    "code": [
+      "S-T",
+      "T-T",
+      "T-S",
+      "S-H",
+      "H-S",
+      "S-S",
+      "S-H",
+      "H-S",
+      "S-T",
+      "T-S",
+      "S-S",
+      "S-T"
+    ],
+    "nOfShapes": 3
+  }
 }

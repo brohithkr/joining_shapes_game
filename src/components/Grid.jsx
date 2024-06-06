@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Square, Circle, Triangle } from "./shapes";
+import { Square, Circle, Triangle, Hexagon } from "./shapes";
 import { ArcherContainer } from "react-archer";
 
 /**
@@ -15,6 +15,8 @@ import { ArcherContainer } from "react-archer";
  * @param {Map<string, Object[]>} props.gridRelations
  * @param {(id: string) => void} props.handleShapeClick
  * @param {Map<string, string>} props.colorGrid
+ * @param {int} props.codeLen
+ * @param {int} props.nOfGridShapes
  * @returns {*}
  */
 function Grid({
@@ -24,13 +26,18 @@ function Grid({
   gridRelations,
   handleShapeClick,
   colorGrid,
+  codeLen,
+  nOfGridShapes = 2,
 }) {
   let grid;
   grid = [];
-  for (let i = 1; i < 13; i++) {
-    let squareId = `s${i}`;
-    let circleId = `c${i}`;
-    let triangleId = `t${i}`;
+  console.log(codeLen)
+  for (let i = 1; i <= codeLen + 1; i++) {
+    let squareId = `s-${i}`;
+    let circle1Id = `c1-${i}`;
+    let circle2Id = `c2-${i}`;
+    let triangleId = `t-${i}`;
+    let hexagonId = `h-${i}`;
     grid.push(
       <div
         key={i}
@@ -60,24 +67,65 @@ function Grid({
             }
             relations={gridRelations.get(triangleId)}
           />
+          {nOfGridShapes >= 3 && (
+            <>
+              <div className="size-10"></div>
+              <Hexagon
+                id={hexagonId}
+                isSelected={selectedSet.has(hexagonId)}
+                onClick={handleShapeClick}
+                color={
+                  colorGrid.get(hexagonId)
+                    ? colorGrid.get(hexagonId)
+                    : "#3b82f6"
+                }
+                relations={gridRelations.get(hexagonId)}
+              />
+            </>
+          )}
         </div>
-        <div className="flex justify-center items-center">
-          <Circle
-            id={circleId}
-            isSelected={selectedSet.has(circleId)}
-            onClick={handleShapeClick}
-            color={
-              colorGrid.get(circleId) ? colorGrid.get(circleId) : "#3b82f6"
-            }
-            relations={gridRelations.get(circleId)}
-          />
-        </div>
-      </div>,
+
+        {i != codeLen+1 && (
+          <div
+            className={`flex flex-1 ${
+              nOfGridShapes == 2 ? "justify-center" : ""
+            } items-center flex-${orientation == "vertical" ? "row" : "col"} `}
+          >
+            {nOfGridShapes >= 3 && <div className="size-[56px]"></div>}
+            <Circle
+              id={circle1Id}
+              isSelected={selectedSet.has(circle1Id)}
+              onClick={handleShapeClick}
+              color={
+                colorGrid.get(circle1Id) ? colorGrid.get(circle1Id) : "#3b82f6"
+              }
+              relations={gridRelations.get(circle1Id)}
+            />
+
+            {nOfGridShapes >= 3 && (
+              <>
+                <div className="size-[56px]"></div>
+                <Circle
+                  id={circle2Id}
+                  isSelected={selectedSet.has(circle2Id)}
+                  onClick={handleShapeClick}
+                  color={
+                    colorGrid.get(circle2Id)
+                      ? colorGrid.get(circle2Id)
+                      : "#3b82f6"
+                  }
+                  relations={gridRelations.get(circle2Id)}
+                />
+              </>
+            )}
+          </div>
+        )}
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}>
       <ArcherContainer>
         <div
           ref={parent}

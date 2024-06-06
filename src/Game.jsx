@@ -1,10 +1,11 @@
 import Grid from "./components/Grid";
 import Code from "./components/Code";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import codes from "./codes.json";
 import colors from "./utlis/colors";
 import compare_n_color from "./utlis/compare_n_color";
 import "./App.css";
+import sounds from "./utlis/sounds";
 
 export default function Game() {
   var [selectedArr, setSelectedArr] = useState([]);
@@ -13,6 +14,7 @@ export default function Game() {
   let [textColorArr, setTextColorArr] = useState([]);
   let [colorGrid, setColorGrid] = useState(new Map());
   let [orientation, setOrientation] = useState("horizontal");
+  let maxLenReached = useRef(0)
   let handleShapeClick = (id) => {
     var currentRelation = gridRelations.get(id);
     var newSelectedArr = selectedArr.slice();
@@ -44,8 +46,16 @@ export default function Game() {
         setSelectedArr(newSelectedArr);
       }
     }
-
-    compare_n_color(codes.code1, newSelectedArr, setTextColorArr, setColorGrid);
+    console.log(selectedArr)
+    let inputCode = compare_n_color(codes.code1.code, newSelectedArr, setTextColorArr, setColorGrid);
+    if(maxLenReached.current < inputCode.length) {
+      maxLenReached.current = inputCode.length
+      if(textColorArr[textColorArr.length -1 ] == colors.green) {
+        sounds.correct.play()
+      } else if (textColorArr[textColorArr.length -1 ] == colors.red) {
+        sounds.wrong.play()
+      }
+    }
   };
 
   const reset = () => {
@@ -72,7 +82,7 @@ export default function Game() {
   return (
     <div className="">
       <div className="fixed top-1/4 left-3 ">
-        <Code codeArr={codes["code1"]} colorArr={textColorArr} />
+        <Code codeArr={codes["code1"]["code"]} colorArr={textColorArr} />
         <button className="mt-4" onClick={reset}>
           {" "}
           reset{" "}
@@ -85,6 +95,8 @@ export default function Game() {
           gridRelations={gridRelations}
           handleShapeClick={handleShapeClick}
           colorGrid={colorGrid}
+          codeLen={codes.code1.code.length}
+          nOfGridShapes={2}
         />
       </div>
     </div>

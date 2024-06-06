@@ -11,7 +11,7 @@ function input_arr_to_code(inputArr, codeLength) {
   for (let i = 0; i < inputArr.length; i++) {
     let parsedInput = {
       shapeChar: inputArr[i][0] != "c" ? inputArr[i][0].toUpperCase() : "-",
-      pos: parseInt(inputArr[i][1]),
+      pos: parseInt(inputArr[i].split("-")[1]),
     };
     parsedInputArr.push(parsedInput);
     if (i > 0 && i % 2 == 0) {
@@ -75,6 +75,7 @@ export default function compare_n_color(
   // console.log(textColorArr)
   setTextColorArr(textColorArr);
   setColorGrid(colorGrid);
+  return inputCode
 }
 
 let code = [
