@@ -21,7 +21,6 @@ function Shape({ id, isSelected, relations, onClick, color, children }) {
 
   const handleClick = () => {
     onClick(id);
-    console.log("worked");
   };
   if (relations) {
     for (let i of relations) {

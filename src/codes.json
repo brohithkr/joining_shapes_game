@@ -1,5 +1,5 @@
-{
-  "code1": {
+[
+  {
     "code": [
       "T-S",
       "S-T",
@@ -16,7 +16,7 @@
     ],
     "nOfShapes": 2
   },
-  "code2": {
+  {
     "code": [
       "S-T",
       "T-T",
@@ -33,7 +33,7 @@
     ],
     "nOfShapes": 2
   },
-  "code3": {
+  {
     "code": [
       "T-S",
       "S-S",
@@ -50,7 +50,7 @@
     ],
     "nOfShapes": 3
   },
-  "code4": {
+  {
     "code": [
       "S-T",
       "T-T",
@@ -67,4 +67,4 @@
     ],
     "nOfShapes": 3
   }
-}
+]

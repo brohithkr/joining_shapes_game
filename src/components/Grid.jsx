@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { Square, Circle, Triangle, Hexagon } from "./shapes";
 import { ArcherContainer } from "react-archer";
 
@@ -29,9 +29,19 @@ function Grid({
   codeLen,
   nOfGridShapes = 2,
 }) {
+  const [svgOrientation, setSvgOrientation] = useState("vertical");
+
+  const initialState = { name: "vertical" };
+  const [state, dispatch] = useReducer((prevState, action) => {
+    switch (action.type) {
+      case "UPDATE_NAME":
+        return { ...prevState, name: action.payload };
+      default:
+        throw new Error();
+    }
+  }, initialState);
   let grid;
   grid = [];
-  console.log(codeLen)
   for (let i = 1; i <= codeLen + 1; i++) {
     let squareId = `s-${i}`;
     let circle1Id = `c1-${i}`;
@@ -85,7 +95,7 @@ function Grid({
           )}
         </div>
 
-        {i != codeLen+1 && (
+        {i != codeLen + 1 && (
           <div
             className={`flex flex-1 ${
               nOfGridShapes == 2 ? "justify-center" : ""
@@ -124,9 +134,30 @@ function Grid({
     );
   }
 
+  useEffect(() => {
+    function handleWindowResize() {
+      setSvgOrientation(window.innerWidth <= 1386 ? "vertical" : "horizontal");
+      dispatch({
+        type: "UPDATE_NAME",
+        payload: window.innerWidth <= 1386 ? "vertical" : "horizontal",
+      });
+      if(selectedArr .length > 1) {
+        // handleShapeClick(selectedArr[selectedArr.length - 1]);
+      }
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    handleWindowResize();
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <div className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}>
-      <ArcherContainer>
+      <ArcherContainer className={svgOrientation}>
         <div
           ref={parent}
           className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}

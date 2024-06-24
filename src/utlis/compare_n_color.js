@@ -48,6 +48,7 @@ export default function compare_n_color(
   inputArr,
   setTextColorArr,
   setColorGrid,
+  setShowNextButton
 ) {
   console.log(inputArr);
   let inputCode = input_arr_to_code(inputArr, correctCode.length);
@@ -56,14 +57,16 @@ export default function compare_n_color(
    * @type {Map<string, string>}
    */
   let colorGrid = new Map();
+  let showNextButton = true;
   for (let i = 0; i < correctCode.length; i++) {
     let color = "";
     if (correctCode[i] == inputCode[i]) {
       color = colors.green;
     } else {
+      showNextButton = false;
       if (inputCode[i] == "") {
         color = colors.blue;
-      } else {
+        } else {
         color = colors.red;
       }
     }
@@ -73,6 +76,7 @@ export default function compare_n_color(
     // colorGrid.set(inputArr[3 * i + 2], color);
   }
   // console.log(textColorArr)
+  setShowNextButton(showNextButton);
   setTextColorArr(textColorArr);
   setColorGrid(colorGrid);
   return inputCode
