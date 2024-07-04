@@ -16,7 +16,7 @@ export function MainRoute() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="joiningshapes">
+    <BrowserRouter basename="games/joiningshapes">
       <MainRoute />
     </BrowserRouter>
   );
