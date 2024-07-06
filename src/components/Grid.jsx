@@ -29,9 +29,9 @@ function Grid({
   codeLen,
   nOfGridShapes = 2,
 }) {
-  const [svgOrientation, setSvgOrientation] = useState("vertical");
+  const [svgOrientation, setSvgOrientation] = useState("horizontal");
 
-  const initialState = { name: "vertical" };
+  const initialState = { name: "horizontal" };
   const [state, dispatch] = useReducer((prevState, action) => {
     switch (action.type) {
       case "UPDATE_NAME":
@@ -157,7 +157,7 @@ function Grid({
 
   return (
     <div className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}>
-      <ArcherContainer className={svgOrientation}>
+      <ArcherContainer className={orientation}>
         <div
           ref={parent}
           className={`flex flex-${orientation == "vertical" ? "col" : "row"}`}

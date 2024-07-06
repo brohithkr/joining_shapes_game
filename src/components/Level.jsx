@@ -81,7 +81,7 @@ export default function Level({ codes, levelno, setLevelNo }) {
       if (selectedArr.length > 1) {
         console.log("selectedArr");
       }
-      if (window.innerWidth < 1386) {
+      if (window.innerWidth < 1342) {
         let newOrientation = "vertical";
         setOrientation(newOrientation);
       } else {
