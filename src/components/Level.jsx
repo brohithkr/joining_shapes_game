@@ -15,7 +15,7 @@ export default function Level({ codes, levelno, setLevelNo }) {
   let [showNextButton, setShowNextButton] = useState(false);
 
   function maxLenReached() {
-    return (selectedArr.length - (selectedArr.length % 3)) / 3
+    return (selectedArr.length - (selectedArr.length % 3)) / 3;
   }
   let code = codes[levelno];
 
@@ -107,29 +107,33 @@ export default function Level({ codes, levelno, setLevelNo }) {
             <b>Reset</b>
           </button>
         </div>
-        <div className={`flex items-center`}>
-          <Grid
-            orientation={orientation}
-            selectedSet={selectedSet}
-            gridRelations={gridRelations}
-            handleShapeClick={handleShapeClick}
-            colorGrid={colorGrid}
-            codeLen={code.code.length}
-            nOfGridShapes={code.nOfShapes}
-            selectedArr={selectedArr}
-          />
+        <div className="flex flex-col" >
+          <div className={`flex items-center`}>
+            <Grid
+              orientation={orientation}
+              selectedSet={selectedSet}
+              gridRelations={gridRelations}
+              handleShapeClick={handleShapeClick}
+              colorGrid={colorGrid}
+              codeLen={code.code.length}
+              nOfGridShapes={code.nOfShapes}
+              selectedArr={selectedArr}
+            />
+          </div>
+          {showNextButton && (
+            <div className="dummy">
+            <button
+              className="mt-4"
+              onClick={() => {
+                reset();
+                setLevelNo(levelno + 1);
+              }}
+            >
+              <b>Next</b>
+            </button>
+            </ div>
+          )}
         </div>
-        {showNextButton && (
-          <button
-            className="mt-4"
-            onClick={() => {
-              reset();
-              setLevelNo(levelno + 1);
-            }}
-          >
-            <b>Next</b>
-          </button>
-        )}
       </div>
     </>
   );
